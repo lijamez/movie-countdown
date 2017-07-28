@@ -20,7 +20,8 @@ npm start
 ```
 
 ## Configuration
-The configuration file is `src/config.json`.
+The configuration file is `src/config.json`. If this file does not exist, then the application will fall back to `src/config-default.json`.
+It's recommended to create a `config.json` using `config-default.json` as a template.
 
 ### fetch_media_info
 *boolean*
@@ -28,4 +29,4 @@ Indicates whether if you want to automatically fetch media info based on the mov
 
 ### tmdb_api_key
 *string*
-Your [TMDb API key](https://www.themoviedb.org/faq/api). Required if `fetch_media_info` is `true`. 
+Your [TMDb API key](https://www.themoviedb.org/faq/api). Required if `fetch_media_info` is `true`.

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import EmbeddedVideo from './EmbeddedVideo.js';
 import Timer from './Timer.js';
 import './App.css';
-import config from './config.json';
 import defaultBackdrop from './background.jpg';
 
 const querystring = require('querystring');
@@ -11,6 +10,13 @@ class App extends Component {
 
   constructor(props) {
     super(props);
+    var config;
+
+    try {
+      config = require('./config.json');
+    } catch (e) {
+      config = require('./config-default.json');
+    }
 
     this.state = {
       youtubeVideoId: null,
