@@ -30,3 +30,5 @@ Indicates whether if you want to automatically fetch media info based on the mov
 ### tmdb_api_key
 *string*
 Your [TMDb API key](https://www.themoviedb.org/faq/api). Required if `fetch_media_info` is `true`.
+
+![Powered by The Movie DB](https://www.themoviedb.org/assets/static_cache/bb45549239e25f1770d5f76727bcd7c0/images/v4/logos/408x161-powered-by-rectangle-blue.png)
