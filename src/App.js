@@ -68,7 +68,7 @@ class App extends Component {
 
   onVideoClosed() {
     this.setState({
-      youtubeVideoId: null
+      pastedContent: null
     });
   }
 

@@ -9,7 +9,6 @@ class EmbeddedVideo extends Component {
     var embeddedVideo = null;
     var closeLink = null;
 
-    console.log(this.props.videoUrl);
     if (this.props.videoUrl) {
       var youtubeVideoId = this._extractYoutubeVideoId(this.props.videoUrl);
 
