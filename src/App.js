@@ -3,8 +3,9 @@ import EmbeddedVideo from './EmbeddedVideo.js';
 import Timer from './Timer.js';
 import './App.css';
 import defaultBackdrop from './background.jpg';
+import TMDbClient from './TMDbClient.js';
 
-const querystring = require('querystring');
+const TMDB_CLIENT = new TMDbClient();
 
 class App extends Component {
 
@@ -64,36 +65,30 @@ class App extends Component {
         return;
       }
 
-      var multiSearchQueryString = querystring.stringify({
+      var multiSearchRequest = {
         api_key: this.state.config.tmdb_api_key,
         language: 'en-US',
         query: featureText,
         page: 1,
         include_adult: false
-      });
+      };
 
-      var fullQueryUrl = "https://api.themoviedb.org/3/search/multi?" + multiSearchQueryString;
+      var onSuccess = function(response) {
 
-      var searchRequest = new XMLHttpRequest();
-      searchRequest.addEventListener("load", function() {
-        if (searchRequest.readyState === 4 && searchRequest.status === 200) {
-          var response = JSON.parse(searchRequest.responseText);
+        if (response.results.length > 0) {
+          var bestResult = response.results[0];
 
-          if (response.results.length > 0) {
-            var bestResult = response.results[0];
-
-            this.setState({
-              backdropUrl: "https://image.tmdb.org/t/p/original/" + bestResult.backdrop_path
-            });
-          }
-
-        } else {
-          console.error("An error " + searchRequest.status + " occurred when looking up media info: " + searchRequest.responseText);
+          this.setState({
+            backdropUrl: "https://image.tmdb.org/t/p/original/" + bestResult.backdrop_path
+          });
         }
+      }.bind(this);
 
-      }.bind(this));
-      searchRequest.open("GET", fullQueryUrl);
-      searchRequest.send();
+      var onFailure = function(statusCode, responseText) {
+        console.error("An error " + statusCode + " occurred when looking up media info: " + responseText);
+      }.bind(this);
+
+      TMDB_CLIENT.multiSearch(multiSearchRequest, onSuccess, onFailure);
     }
   }
 }
