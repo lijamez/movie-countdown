@@ -3,21 +3,23 @@ import EmbeddedVideo from './EmbeddedVideo.js';
 import Timer from './Timer.js';
 import './App.css';
 import defaultBackdrop from './background.jpg';
-import TMDbClient from './TMDbClient.js';
+import MediaInfo from './MediaInfo.js';
 
-const TMDB_CLIENT = new TMDbClient();
+var config;
+
+try {
+  config = require('./config.json');
+} catch (e) {
+  config = require('./config-default.json');
+}
+
+const MEDIA_INFO = new MediaInfo(config.tmdb_api_key);
 
 class App extends Component {
 
   constructor(props) {
     super(props);
-    var config;
 
-    try {
-      config = require('./config.json');
-    } catch (e) {
-      config = require('./config-default.json');
-    }
 
     this.state = {
       youtubeVideoId: null,
@@ -65,30 +67,20 @@ class App extends Component {
         return;
       }
 
-      var multiSearchRequest = {
-        api_key: this.state.config.tmdb_api_key,
-        language: 'en-US',
-        query: featureText,
-        page: 1,
-        include_adult: false
-      };
-
       var onSuccess = function(response) {
 
         if (response.results.length > 0) {
           var bestResult = response.results[0];
 
-          this.setState({
-            backdropUrl: "https://image.tmdb.org/t/p/original/" + bestResult.backdrop_path
-          });
+          if (bestResult.backdrop_path !== null) {
+            this.setState({
+              backdropUrl: "https://image.tmdb.org/t/p/original/" + bestResult.backdrop_path
+            });
+          }
         }
       }.bind(this);
 
-      var onFailure = function(statusCode, responseText) {
-        console.error("An error " + statusCode + " occurred when looking up media info: " + responseText);
-      }.bind(this);
-
-      TMDB_CLIENT.multiSearch(multiSearchRequest, onSuccess, onFailure);
+      MEDIA_INFO.getBackdrop(featureText, onSuccess);
     }
   }
 }
