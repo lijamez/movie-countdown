@@ -38,7 +38,7 @@ class App extends Component {
     if (this.state.posterUrl !== null) {
       poster = (<div className="PerspectivePosterPart">
         <div className="PerspectivePoster">
-          <img src={this.state.posterUrl} style={{width: "400px"}}/>
+          <img src={this.state.posterUrl} style={{width: "400px"}} alt="Poster"/>
         </div>
       </div>);
     }
@@ -88,25 +88,19 @@ class App extends Component {
       }
 
       var onSuccess = function(response) {
-
-        if (response.results.length > 0) {
-          var bestResult = response.results[0];
-
-          if (bestResult.backdrop_path !== null) {
-            this.setState({
-              backdropUrl: "https://image.tmdb.org/t/p/original/" + bestResult.backdrop_path
-            });
-          }
-
-          if (bestResult.poster_path !== null) {
-            this.setState({
-              posterUrl: "https://image.tmdb.org/t/p/original/" + bestResult.poster_path
-            });
-          }
+        if (response !== null) {
+          this.setState({
+            backdropUrl: response.backdropUrl,
+            posterUrl: response.posterUrl
+          });
         }
       }.bind(this);
 
-      MEDIA_INFO.getMediaInfo(featureText, onSuccess);
+      var onFailure = function(statusCode, responseText) {
+        console.error('Failed to get media information. Error code: ' + statusCode + ', Message: ' + responseText);
+      };
+
+      MEDIA_INFO.getMediaInfo(featureText, onSuccess, onFailure);
     }
   }
 }

@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 
 class EmbeddedVideo extends Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     var embeddedVideo = null;
     var closeLink = null;

@@ -9,7 +9,7 @@ class MediaInfo {
     tmdbApiKey = apiKey;
   }
 
-  getMediaInfo(searchTerm, successCallback) {
+  getMediaInfo(searchTerm, successCallback, failureCallback) {
     // The search term might be for a movie or TV show.
     // To get better search results, try to figure out whether if the search
     // term is for a TV or movie, if possible.
@@ -26,9 +26,7 @@ class MediaInfo {
           first_air_date_year: gleanedInfo.year
       };
 
-      TMDB_CLIENT.searchTv(request, successCallback, function(statusCode, responseText) {
-        console.error('Failed to get TV backdrop. Error ' + statusCode);
-      });
+      TMDB_CLIENT.searchTv(request, successCallback, failureCallback);
     } else if (gleanedInfo.classification === 'movie') {
       request = {
           api_key: tmdbApiKey,
@@ -37,9 +35,7 @@ class MediaInfo {
           primary_release_year: gleanedInfo.year
       };
 
-      TMDB_CLIENT.searchMovie(request, successCallback, function(statusCode, responseText) {
-        console.error('Failed to get Movie backdrop. Error ' + statusCode);
-      });
+      TMDB_CLIENT.searchMovie(request, successCallback, failureCallback);
     } else {
       request = {
         api_key: tmdbApiKey,
@@ -49,9 +45,7 @@ class MediaInfo {
         include_adult: false
       };
 
-      TMDB_CLIENT.multiSearch(request, successCallback, function(statusCode, responseText) {
-        console.error('Failed to get backdrop. Error ' + statusCode);
-      });
+      TMDB_CLIENT.multiSearch(request, successCallback, failureCallback);
     }
 
   }
