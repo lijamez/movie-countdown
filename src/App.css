@@ -73,7 +73,7 @@ body {
   font-family: "Share Tech Mono";
   font-size: 90px;
   -webkit-text-stroke: 0px black;
-  text-shadow: 2px 2px black;
+  text-shadow: 2px 2px 5px black;
   color: white;
 }
 
@@ -97,16 +97,14 @@ body {
 .Feature-Text {
   font-family: "Cinzel";
   font-size: 70px;
-  -webkit-text-stroke: 0px black;
-  text-shadow: 2px 2px black;
+  text-shadow: 2px 2px 5px black;
   color: white;
 }
 
 .Subtitle-Text {
   font-family: "Cinzel";
   font-size: 40px;
-  -webkit-text-stroke: 0px black;
-  text-shadow: 2px 2px black;
+  text-shadow: 2px 2px 5px black;
   color: white;
 }
 
