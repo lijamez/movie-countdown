@@ -10,7 +10,7 @@ class EmbeddedVideo extends Component {
     var embeddedVideo = null;
     var closeLink = null;
     if (this.props.youtubeVideoId != null) {
-      embeddedVideo = <iframe title="Embedded Video" width="1511" height="850" src={'https://www.youtube.com/embed/' + this.props.youtubeVideoId + '?rel=0&amp;showinfo=0&autoplay=1'} frameborder="0" allowfullscreen></iframe>;
+      embeddedVideo = <iframe title="Embedded Video" width="1280" height="720" src={'https://www.youtube.com/embed/' + this.props.youtubeVideoId + '?rel=0&amp;showinfo=0&autoplay=1'} frameborder="0" allowfullscreen></iframe>;
       closeLink = <a className="Embedded-Video-Close-Link" href="#" onClick={this.close.bind(this)}>X</a>;
     }
 

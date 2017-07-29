@@ -9,7 +9,7 @@ class MediaInfo {
     tmdbApiKey = apiKey;
   }
 
-  getBackdrop(searchTerm, successCallback) {
+  getMediaInfo(searchTerm, successCallback) {
     // The search term might be for a movie or TV show.
     // To get better search results, try to figure out whether if the search
     // term is for a TV or movie, if possible.

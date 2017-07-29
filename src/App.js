@@ -23,6 +23,7 @@ class App extends Component {
     this.state = {
       youtubeVideoId: null,
       backdropUrl: defaultBackdrop,
+      posterUrl: null,
       config: config
     };
   }
@@ -33,17 +34,36 @@ class App extends Component {
       backgroundImage: 'url(' + this.state.backdropUrl + ')'
     };
 
+    var poster = null;
+    if (this.state.posterUrl !== null) {
+      poster = (<div className="PerspectivePosterPart">
+        <div className="PerspectivePoster">
+          <img src={this.state.posterUrl} style={{width: "400px"}}/>
+        </div>
+      </div>);
+    }
+
     return (
-      <div className="Outer">
-        <div className="Timer-Background" style={backdropDivStyle}/>
-        <div className="Middle" onPaste={this.handlePaste.bind(this)}>
-          <div className="Timer-Container">
-            <Timer feature="Show Name Here" onFeatureTextChanged={this.onFeatureTextChanged.bind(this)}/>
-            <EmbeddedVideo youtubeVideoId={this.state.youtubeVideoId} onVideoClosed={this.onVideoClosed.bind(this)}/>;
+      <div onPaste={this.handlePaste.bind(this)}>
+        <div className="Page-Background" style={backdropDivStyle}/>
+
+        <div className="Centered">
+          <div className="MainTable">
+            <div className="LeftPart">
+              {poster}
+            </div>
+            <div className="RightPart">
+              <div className="Timer-Container">
+                <Timer feature="---" onFeatureTextChanged={this.onFeatureTextChanged.bind(this)}/>
+              </div>
+              <div className="VideoPart">
+                <EmbeddedVideo youtubeVideoId={this.state.youtubeVideoId} onVideoClosed={this.onVideoClosed.bind(this)}/>;
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    );
+    )
   }
 
   onVideoClosed() {
@@ -77,10 +97,16 @@ class App extends Component {
               backdropUrl: "https://image.tmdb.org/t/p/original/" + bestResult.backdrop_path
             });
           }
+
+          if (bestResult.poster_path !== null) {
+            this.setState({
+              posterUrl: "https://image.tmdb.org/t/p/original/" + bestResult.poster_path
+            });
+          }
         }
       }.bind(this);
 
-      MEDIA_INFO.getBackdrop(featureText, onSuccess);
+      MEDIA_INFO.getMediaInfo(featureText, onSuccess);
     }
   }
 }
