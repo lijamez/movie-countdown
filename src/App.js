@@ -20,7 +20,6 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-
     this.state = {
       youtubeVideoId: null,
       backdropUrl: defaultBackdrop,
@@ -29,11 +28,6 @@ class App extends Component {
   }
 
   render() {
-
-    var embeddedVideo = null;
-    if (this.state.youtubeVideoId != null) {
-      embeddedVideo = <EmbeddedVideo youtubeVideoId={this.state.youtubeVideoId}/>;
-    }
 
     var backdropDivStyle = {
       backgroundImage: 'url(' + this.state.backdropUrl + ')'
@@ -45,11 +39,17 @@ class App extends Component {
         <div className="Middle" onPaste={this.handlePaste.bind(this)}>
           <div className="Timer-Container">
             <Timer feature="Show Name Here" onFeatureTextChanged={this.onFeatureTextChanged.bind(this)}/>
-            {embeddedVideo}
+            <EmbeddedVideo youtubeVideoId={this.state.youtubeVideoId} onVideoClosed={this.onVideoClosed.bind(this)}/>;
           </div>
         </div>
       </div>
     );
+  }
+
+  onVideoClosed() {
+    this.setState({
+      youtubeVideoId: null
+    });
   }
 
   handlePaste(e) {
