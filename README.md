@@ -5,7 +5,7 @@ A simple countdown web application that is movie/TV show oriented.
 ### Dynamic Media info
 Automatically updates the backdrop based on the movie or TV show name. ([TMDb](https://www.themoviedb.org) API key required)
 ### YouTube Video Embedding
-Instantly embed a YouTube video on the countdown page by pasting the YouTube video ID into the page.
+Instantly embed a YouTube video on the countdown page by pasting a link to a YouTube video into the page.
 
 ## How to Run
 1. Install [NodeJS](https://nodejs.org)
@@ -38,6 +38,9 @@ The time is editable. Just enter an amount of time in a HH:mm:dd format. (e.g. 0
 
 ### Dynamic Backdrop
 If `fetch_media_info` is true, then the backdrop will be fetched whenever the timer's name is changed. The search for the backdrop isn't perfect, however. For example, if you enter `The Room`, it could fetch the incorrect movie, "The Disappointment Room". To improve search results, add a hint to the timer name.
+
+### Youtube Video Embedding
+Paste a link to YouTube video anywhere in the page to embed and automatically play it. Supports regular YouTube (www.youtube.com) and share links (youtu.be).
 
 **Year Hint**
 Add a year in parentheses. For example, `The Jungle Book (1967)` vs `The Jungle Book (2016)`.

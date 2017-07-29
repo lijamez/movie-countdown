@@ -21,7 +21,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      youtubeVideoId: null,
+      pastedContent: null,
       backdropUrl: defaultBackdrop,
       posterUrl: null,
       config: config
@@ -57,7 +57,7 @@ class App extends Component {
                 <Timer feature="---" onFeatureTextChanged={this.onFeatureTextChanged.bind(this)}/>
               </div>
               <div className="VideoPart">
-                <EmbeddedVideo youtubeVideoId={this.state.youtubeVideoId} onVideoClosed={this.onVideoClosed.bind(this)}/>
+                <EmbeddedVideo videoUrl={this.state.pastedContent} onVideoClosed={this.onVideoClosed.bind(this)}/>
               </div>
             </div>
           </div>
@@ -74,7 +74,7 @@ class App extends Component {
 
   handlePaste(e) {
     this.setState({
-      youtubeVideoId: e.clipboardData.getData('Text')
+      pastedContent: e.clipboardData.getData('Text')
     });
   }
 
