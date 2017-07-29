@@ -14,7 +14,7 @@ Instantly embed a YouTube video on the countdown page by pasting the YouTube vid
 ```
 npm install
 ```
-4. Start the server
+4. Start the development server
 ```
 npm start
 ```
@@ -31,4 +31,19 @@ Indicates whether if you want to automatically fetch media info based on the mov
 *string*
 Your [TMDb API key](https://www.themoviedb.org/faq/api). Required if `fetch_media_info` is `true`.
 
+## Usage
+
+### Setting the Time
+The time is editable. Just enter an amount of time in a HH:mm:dd format. (e.g. 01:20:34).
+
+### Dynamic Backdrop
+If `fetch_media_info` is true, then the backdrop will be fetched whenever the timer's name is changed. The search for the backdrop isn't perfect, however. For example, if you enter `The Room`, it could fetch the incorrect movie, "The Disappointment Room". To improve search results, add a hint to the timer name.
+
+**Year Hint**
+Add a year in parentheses. For example, `The Jungle Book (1967)` vs `The Jungle Book (2016)`.
+
+**TV Show Hint**
+If search results are turning up a movie when you actually wanted a TV show, include a season and episode in the title in the format `S[0-9]{2}E[0-9]{2}`. For example, `House S01E02`.
+
+## Attribution
 ![Powered by The Movie DB](https://www.themoviedb.org/assets/static_cache/bb45549239e25f1770d5f76727bcd7c0/images/v4/logos/408x161-powered-by-rectangle-blue.png)
