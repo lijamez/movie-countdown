@@ -61,10 +61,19 @@ class Timer extends Component {
 		return (
       <div>
         <div className="Feature-Text" tabIndex="1" onFocus={this.onFeatureTextEditStart.bind(this)} onBlur={this.onFeatureTextEditStop.bind(this)}>{this.state.feature}</div>
-  			<div className="Time-Remaining" tabIndex="2" onFocus={this.makeCountdownEditable.bind(this)} onBlur={this.onCountdownUpdated.bind(this)}>{this.getTimeRemaining()}</div>
+        <div className="Subtitle-Text"  tabIndex="2" onFocus={this.onSubtitleTextEditStart.bind(this)} onBlur={this.onSubtitleTextEditStop.bind(this)}></div>
+  			<div className="Time-Remaining" tabIndex="3" onFocus={this.makeCountdownEditable.bind(this)} onBlur={this.onCountdownUpdated.bind(this)}>{this.getTimeRemaining()}</div>
       </div>
 		)
 	}
+
+  onSubtitleTextEditStart(e) {
+    e.target.setAttribute("contenteditable", "true");
+  }
+
+  onSubtitleTextEditStop(e) {
+    e.target.setAttribute("contenteditable", "false");
+  }
 
   onFeatureTextEditStart(e) {
     e.target.setAttribute("contenteditable", "true");

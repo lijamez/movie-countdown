@@ -57,7 +57,7 @@ class App extends Component {
                 <Timer feature="---" onFeatureTextChanged={this.onFeatureTextChanged.bind(this)}/>
               </div>
               <div className="VideoPart">
-                <EmbeddedVideo youtubeVideoId={this.state.youtubeVideoId} onVideoClosed={this.onVideoClosed.bind(this)}/>;
+                <EmbeddedVideo youtubeVideoId={this.state.youtubeVideoId} onVideoClosed={this.onVideoClosed.bind(this)}/>
               </div>
             </div>
           </div>

@@ -71,7 +71,7 @@ body {
 
 .Time-Remaining {
   font-family: "Share Tech Mono";
-  font-size: 100px;
+  font-size: 90px;
   -webkit-text-stroke: 0px black;
   text-shadow: 2px 2px black;
   color: white;
@@ -97,6 +97,14 @@ body {
 .Feature-Text {
   font-family: "Cinzel";
   font-size: 70px;
+  -webkit-text-stroke: 0px black;
+  text-shadow: 2px 2px black;
+  color: white;
+}
+
+.Subtitle-Text {
+  font-family: "Cinzel";
+  font-size: 40px;
   -webkit-text-stroke: 0px black;
   text-shadow: 2px 2px black;
   color: white;
